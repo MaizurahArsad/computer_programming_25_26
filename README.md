@@ -10,11 +10,11 @@ This repository is used as a companion resource for the **Basic Programming** tu
 
 ## Course Information
 
-| Detail | Info |
-|--------|------|
-| Course | Basic Programming |
-| Semester | Semester 2, 2025/2026 |
-| Session Type | Tutorial |
+| Detail | Info                      |
+|--------|---------------------------|
+| Course | Computer Programming |
+| Semester | Semester 2, 2025/2026     |
+| Session Type | Tutorial                  |
 
 ## Repository Structure
 
@@ -22,8 +22,11 @@ Each week's materials will be organised into their own folder as the semester pr
 
 ```
 computer_programming_25_26/
-├── week_01/   # Introduction & Setup
-├── week_02/   # (coming soon)
+├── session0/   # Introduction & Setup
+├── session1/   # (coming soon)
+├── session2/   # (coming soon)
+├── session3/   # (coming soon)
+├── session4/   # (coming soon)
 └── ...
 ```
 
@@ -52,5 +55,3 @@ New content is added each week covering topics introduced in the tutorial sessio
 If you spot any errors or have questions about the materials, please open an **Issue** in this repository.
 
 ---
-
-*Last updated: March 2026*
