@@ -1,3 +1,4 @@
+# MAIZURAH BINTI ARSAD (BS23110083)
 
 
 # Session 2 continuity variables (Rule settings). Do not change these.
@@ -6,7 +7,6 @@ FEATURE_NAME = "petal_length"
 POSITIVE_LABEL = "setosa"
 NEGATIVE_LABEL = "not_setosa"
 LABEL_KEY = "species"
-
 
 
 correct = 0      # Count of correct predictions
@@ -26,24 +26,76 @@ flower1 = {
 
 # Task 1: Create A dictionary for second flower
 
-# flower2 = {
-# "id": "flower2",
-# <your code here>: 4.9,
-# <your code here> add key value
-# "species": "setosa"
-# <your code here> remember to close me for a dict
+flower2 = {
+    "id": "flower2",
+    "sepal_length": 4.9,
+    "sepal_width": 3.0,
+    "petal_length": 1.4,
+    "petal_width": 0.2,
+    "species": "setosa"
+}  # remember to close me for a dict
 
 
 # Task 2: Create list of dictionaries
-# dataset= <your code here>
+dataset = [flower1, flower2]  # dataset to loop over
+
+# values from session 2
+threshold = 2.0
+feature_name = "petal_length"  # feature used for prediction
+positive_label = "setosa"  # label for positive class
+negative_label = "not_setosa"  # label for negative class
+label_key = "species"  # keyin dict storing true label
 
 
 # Task 3: Create a for loop to process the dataset
-# for <your code here> in dataset:
-#     print(<your code here>["id"], <your code here>["petal_length"], <your code here>["species"])
+# This loop was used to check dataset values (practice)
+# for sample in dataset:
+#    print(sample["id"], sample["petal_length"], sample["species"])
+
 
 # Task 4: Use an if-else statement to classify each sample
-# if <your code here>["petal_length"] < threshold:
-#     y_pred = positive_label
-# <your code here>
-#     <your code here> = negative_label
+# This loop was used to test classification rule (practice)
+# for sample in dataset:
+#    if sample["petal_length"] < threshold:
+#        y_pred = positive_label
+#    else:
+#        y_pred = negative_label
+
+#    print(sample["id"], y_pred)
+
+# 3.8.2 TASK 1: Initialize metrics and predictions list (line 2 till 5)
+for sample in dataset:
+    # Task 2: Compute prediction
+    if sample[feature_name] < threshold:
+        y_pred = positive_label  # predict setosa if petal_length<threshold
+    else:
+        y_pred = negative_label
+
+    # Task 3: Convert true label
+    if sample[label_key] == positive_label:
+        y_true = positive_label
+    else:
+        y_true = negative_label
+
+    # Update metrics
+    if y_pred == y_true:
+        correct += 1
+    else:
+        wrong += 1
+    total += 1  # always increment total for every sample
+    y_pred_list.append(y_pred)  # store prediction in list
+
+    # Task 4: Print per-sample summary
+    print(
+        f"id={sample['id']} | true={y_true} | pred={y_pred} | "
+        f"petal_length={sample['petal_length']}"
+    )
+
+# Task 5: Final summary
+accuracy = (correct / total) * 100 if total > 0 else 0.0
+
+print("Correct:", correct)  # number of correct predictions
+print("Wrong:", wrong)  # number of wrong predictions
+print("Total:", total)  # total samples processed
+print("Accuracy (%):", accuracy)  # accuracy percentage
+print("All predictions:", y_pred_list)  # list all prediction
