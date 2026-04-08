@@ -36,3 +36,19 @@ label_key = "species"
 petal_length = 1.4
 is_short_petal = petal_length < threshold
 print(is_short_petal)
+
+#  Task 6: Take Home Exercise
+sepal_length_2 = 5.1
+sepal_width_2 = 3.5
+petal_length_2 = 1.4
+petal_width_2 = 0.2
+species_2 = "Iris setosa"
+
+print("Sepal Length:", sepal_length_2)
+print("Sepal Width:", sepal_width_2)
+print("Petal Length:", petal_length_2)
+print("Petal Width:", petal_width_2)
+print("Species:", species_2)
+
+petal_area_2 = petal_length_2 * petal_width_2
+print("\nPetal Area_2 is: ", petal_area_2)
