@@ -1,3 +1,8 @@
+"""Session 3: Lists, Loops, and Conditionals for Iris classification.
+This script builds on Session 2 by converting variables to dictionaries, assembling a dataset list,
+iterating over it, applying a threshold rule, and computing accuracy metrics.
+"""
+
 # MAIZURAH BINTI ARSAD (BS23110083)
 
 
@@ -39,43 +44,36 @@ flower2 = {
 # Task 2: Create list of dictionaries
 dataset = [flower1, flower2]  # dataset to loop over
 
-# values from session 2
-threshold = 2.0
-feature_name = "petal_length"  # feature used for prediction
-positive_label = "setosa"  # label for positive class
-negative_label = "not_setosa"  # label for negative class
-label_key = "species"  # keyin dict storing true label
-
 
 # Task 3: Create a for loop to process the dataset
 # This loop was used to check dataset values (practice)
-# for sample in dataset:
-#    print(sample["id"], sample["petal_length"], sample["species"])
+for sample in dataset:
+    print(sample["id"], sample[FEATURE_NAME], sample[LABEL_KEY])
 
 
 # Task 4: Use an if-else statement to classify each sample
 # This loop was used to test classification rule (practice)
 # for sample in dataset:
-#    if sample["petal_length"] < threshold:
-#        y_pred = positive_label
+#    if sample[FEATURE_NAME] < THRESHOLD:
+#        y_pred = POSITIVE_LABEL
 #    else:
-#        y_pred = negative_label
+#        y_pred = NEGATIVE_LABEL
 
 #    print(sample["id"], y_pred)
 
 # 3.8.2 TASK 1: Initialize metrics and predictions list (line 2 till 5)
 for sample in dataset:
     # Task 2: Compute prediction
-    if sample[feature_name] < threshold:
-        y_pred = positive_label  # predict setosa if petal_length<threshold
+    if sample[FEATURE_NAME] < THRESHOLD:
+        y_pred = POSITIVE_LABEL  # predict setosa if petal_length<threshold
     else:
-        y_pred = negative_label
+        y_pred = NEGATIVE_LABEL
 
     # Task 3: Convert true label
-    if sample[label_key] == positive_label:
-        y_true = positive_label
+    if sample[LABEL_KEY] == POSITIVE_LABEL:
+        y_true = POSITIVE_LABEL
     else:
-        y_true = negative_label
+        y_true = NEGATIVE_LABEL
 
     # Update metrics
     if y_pred == y_true:
@@ -97,5 +95,5 @@ accuracy = (correct / total) * 100 if total > 0 else 0.0
 print("Correct:", correct)  # number of correct predictions
 print("Wrong:", wrong)  # number of wrong predictions
 print("Total:", total)  # total samples processed
-print("Accuracy (%):", accuracy)  # accuracy percentage
+print("Accuracy (%):", round(accuracy, 2))  # accuracy percentage
 print("All predictions:", y_pred_list)  # list all prediction
