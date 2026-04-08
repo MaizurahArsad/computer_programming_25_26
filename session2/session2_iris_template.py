@@ -37,7 +37,16 @@ label_key = "species"
 # Task 5: Comparing with threshold
 petal_length = 1.4
 is_short_petal = petal_length < threshold
-print(is_short_petal)
+print("is_short_petal (petal_length < threshold): ", is_short_petal)
+petal_length_text = str(petal_length)
+threshold_text = str(threshold)
+threshold_number = float(threshold_text)
+
+print("\npetal_length_text:", petal_length_text,
+      "| type:", type(petal_length_text))
+print("threshold_text:", threshold_text, "| type:", type(threshold_text))
+print("threshold_number:", threshold_number,
+      "| type:", type(threshold_number))
 
 #  Task 6: Take Home Exercise
 sepal_length_2 = 5.1
@@ -46,11 +55,11 @@ petal_length_2 = 1.4
 petal_width_2 = 0.2
 species_2 = "Iris setosa"
 
-print("Sepal Length:", sepal_length_2)
-print("Sepal Width:", sepal_width_2)
-print("Petal Length:", petal_length_2)
-print("Petal Width:", petal_width_2)
-print("Species:", species_2)
+print("\nSepal Length_2:", sepal_length_2)
+print("Sepal Width_2:", sepal_width_2)
+print("Petal Length_2:", petal_length_2)
+print("Petal Width_2:", petal_width_2)
+print("Species_2:", species_2)
 
 petal_area_2 = petal_length_2 * petal_width_2
 print("\nPetal Area_2 is: ", petal_area_2)
