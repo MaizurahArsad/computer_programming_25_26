@@ -49,7 +49,7 @@ dataset = [flower1, flower2]  # dataset to loop over
 # This loop was used to check dataset values (practice)
 for sample in dataset:
     print(sample["id"], sample[FEATURE_NAME], sample[LABEL_KEY])
-
+    
 
 # Task 4: Use an if-else statement to classify each sample
 # This loop was used to test classification rule (practice)
