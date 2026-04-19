@@ -29,6 +29,7 @@ def setup_application_list():
 
 
 class IrisRuleClassifier:
+
     """A class that bundles configuration and prediction/evaluation behavior.
 
     Configuration (threshold, labels) is stored as attributes on self.
@@ -48,7 +49,7 @@ class IrisRuleClassifier:
                                are predicted as setosa.
         """
         # Store the threshold as an attribute on self.
-        self.threshold = 2.0
+        self.threshold = threshold
 
         # We enforce these attribute names so later sessions can reuse your class.
         self.positive_label =  "setosa" # should be the string "setosa"
@@ -187,15 +188,15 @@ class IrisRuleClassifier:
         print("\n=== Start Session 6 Prediction Loop ===")
 
         for sample in dataset:
-         y_pred = self.compute_threshold_prediction(sample)
-        y_true = self.derive_true_label(sample)
-        correct, wrong, total, y_pred_list = self.update_result_counts(
-             correct, wrong, total, y_pred_list, y_pred, y_true)
+            y_pred = self.compute_threshold_prediction(sample)
+            y_true = self.derive_true_label(sample)
+            correct, wrong, total, y_pred_list = self.update_result_counts(
+            correct, wrong, total, y_pred_list, y_pred, y_true)
         
-        print(
-           f"id={sample['id']} | true={y_true} | pred={y_pred} | "
+            print(
+            f"id={sample['id']} | true={y_true} | pred={y_pred} | "
             f"petal_length={sample['petal_length']}"
-        )
+            )
 
         return correct, wrong, total, y_pred_list
         
@@ -230,31 +231,35 @@ def main():
 
     # Task 2: Implement compute_threshold_prediction
     # Can you write the syntax by urself
-sample = {"petal_length": 1.4, "species": "setosa", "id": "flower1"}
-classifier = IrisRuleClassifier (threshold=2.0)
-prediction = classifier.compute_threshold_prediction(sample)
-print(prediction) # should print: setosa
+    sample = {"petal_length": 1.4, "species": "setosa", "id": "flower1"}
+    prediction = classifier.compute_threshold_prediction(sample)
+    print(prediction) # should print: setosa
 
     # Task 3: Implement derive_true_label
-sample_setosa = {"species": "setosa", "petal_length": 1.4}
-sample_versicolor = {"species": "versicolor", "petal_length": 4.7}
-    # # setosa
-print(f"Setosa prediction: {classifier.derive_true_label(sample_setosa)}")
-    # # not_setosa
-print(
+    sample_setosa = {"species": "setosa", "petal_length": 1.4}
+    sample_versicolor = {"species": "versicolor", "petal_length": 4.7}
+   
+    # setosa
+    print(f"Setosa prediction: {classifier.derive_true_label(sample_setosa)}")
+    
+    # not_setosa
+    print(
     f"Versicolor prediction: {classifier.derive_true_label(sample_versicolor)}")
 
     # Task 6: Implement run_prediction_loop
-dataset = setup_application_list()
-correct, wrong, total, y_pred_list = classifier.run_prediction_loop(dataset)
+    classifier.print_status("Build dataset")
+    dataset = setup_application_list()
+
+    classifier.print_status("Run prediction loop")
+    correct, wrong, total, y_pred_list = classifier.run_prediction_loop(dataset)
 
     # Step 5: Calculate accuracy from the returned counters
     # >> Just uncomment the code below, as you have already implemented calculate_accuracy in Task 5.
-accuracy = classifier.calculate_accuracy(correct,total)
+    accuracy = classifier.calculate_accuracy(correct,total)
 
     # Step 7: Print a final status message and the summary
-classifier.print_status("Print summary")
-classifier.print_summary(correct, wrong, total, y_pred_list, accuracy)
+    classifier.print_status("Print summary")
+    classifier.print_summary(correct, wrong, total, y_pred_list, accuracy)
 
 
 
