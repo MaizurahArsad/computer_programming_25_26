@@ -9,7 +9,7 @@ How to run:
 """
 
 
-from asyncio import Task
+# from asyncio import Task
 
 
 def setup_application_list():
@@ -17,7 +17,7 @@ def setup_application_list():
 
     This function is provided for you. Do not modify it.
     """
-    return [
+    h=[
         {"id": "flower1", "petal_length": 1.4, "species": "setosa"},
         {"id": "flower2", "petal_length": 1.5, "species": "setosa"},
         {"id": "flower3", "petal_length": 1.3, "species": "setosa"},
@@ -26,6 +26,7 @@ def setup_application_list():
         {"id": "flower6", "petal_length": 5.1, "species": "virginica"},
         {"id": "flower7", "petal_length": 6.0, "species": "virginica"},
     ]
+    return h
 
 
 class IrisRuleClassifier:
@@ -69,6 +70,7 @@ class IrisRuleClassifier:
 
     # Task 2: Implement compute_threshold_prediction
     def compute_threshold_prediction(self, sample):
+
         """Predict the label for one flower sample using the threshold rule.
 
         Compare sample["petal_length"] to self.threshold.
