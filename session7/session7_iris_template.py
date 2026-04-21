@@ -151,8 +151,8 @@ class ClassifierBase:
         print("\n=== Start Evaluation ===")
 
         for sample in dataset:
-             y_pred = self.predict(<your code here>)
-             y_true = self.derive_true_label(<your code here>)
+             y_pred = self.predict(sample)
+             y_true = self.derive_true_label(sample)
              correct, wrong, total, y_pred_list = self.update_result_counts(
                  correct, wrong, total, y_pred_list, y_pred, y_true
              )
@@ -161,8 +161,8 @@ class ClassifierBase:
                  f"petal_length={sample['petal_length']}"
              )
 
-             accuracy = self.calculate_accuracy(correct, total)
-             return correct, wrong, total, y_pred_list, accuracy
+        accuracy = self.calculate_accuracy(correct, total)
+        return correct, wrong, total, y_pred_list, accuracy
 
 
 
@@ -222,7 +222,7 @@ class NearestCentroidClassifier(ClassifierBase):
     """
 
     # Task 7: Define NearestCentroidClassifier.__init__
-    def _init_(self, setosa_center=1.5, not_setosa_center=4.5):
+    def __init__(self, setosa_center=1.5, not_setosa_center=4.5):
         """Initialise the nearest centroid classifier.
 
         Call the parent __init__ first using super().__init__().
@@ -235,9 +235,9 @@ class NearestCentroidClassifier(ClassifierBase):
         # 1. Call super().__init__() to run the parent's setup
         # 2. Store setosa_center: self.setosa_center = setosa_center
         # 3. Store not_setosa_center: self.not_setosa_center = not_setosa_center
-       super().__init__()
-       self.setosa_center = setosa_center
-       self.not_setosa_center = not_setosa_center
+        super().__init__()
+        self.setosa_center = setosa_center
+        self.not_setosa_center = not_setosa_center
 
     # Task 8: Implement NearestCentroidClassifier.predict
     def predict(self, sample):
@@ -262,8 +262,8 @@ class NearestCentroidClassifier(ClassifierBase):
         # 5. Otherwise: return self.negative_label
 
         petal_length = sample["petal_length"]
-        dist_to_setosa = abs (petal-length - self.setosa_center)
-        dist_to_setosa = abs (petal-length - self.not_setosa_center)
+        dist_to_setosa = abs (petal_length - self.setosa_center)
+        dist_to_not_setosa = abs (petal_length - self.not_setosa_center)
         if dist_to_setosa < dist_to_not_setosa:
             return self.positive_label
         else:
@@ -312,11 +312,11 @@ def main():
     run_and_report(centroid_clf, dataset, "NearestCentroidClassifier")
 
     # Step 4: Demonstrate polymorphism using a loop over a list of classifiers
-     classifiers = [
+    classifiers = [
          RuleClassifier(threshold=2.0),
          NearestCentroidClassifier(setosa_center=1.5, not_setosa_center=4.5),
      ]
-     for clf in classifiers:
+    for clf in classifiers:
          run_and_report(clf, dataset, clf.__class__.__name__)
 
 
