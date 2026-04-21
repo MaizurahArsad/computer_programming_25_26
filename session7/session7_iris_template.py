@@ -1,3 +1,4 @@
+# MAIZURAH BINTI ARSAD (BS23110083)
 """Session 7 student template: Inheritance and Polymorphism.
 
 In this session, you will:
@@ -67,7 +68,11 @@ class ClassifierBase:
         # If sample["species"] == self.positive_label:
         #     return self.positive_label
         # Otherwise return self.negative_label
-        pass
+        if sample["species"] == self.positive_label:
+            return self.positive_label
+        else:
+            return self.negative_label
+
 
     # Task 2: Implement update_result_counts
     def update_result_counts(self, correct, wrong, total, y_pred_list, y_pred, y_true):
@@ -92,7 +97,14 @@ class ClassifierBase:
         # 3. Always increase total by 1 (even when the prediction is wrong!)
         # 4. Append y_pred to y_pred_list
         # 5. Return the tuple: (correct, wrong, total, y_pred_list)
-        pass
+        if y_pred == y_true:
+            correct += 1
+        else:
+            wrong += 1
+        total += 1
+        y_pred_list.append(y_pred)
+        return correct, wrong, total, y_pred_list
+
 
     # Task 3: Implement calculate_accuracy
     def calculate_accuracy(self, correct, total):
@@ -109,7 +121,10 @@ class ClassifierBase:
         # If total > 0:
         #     return (correct / total) * 100
         # Otherwise return 0.0
-        pass
+        if total > 0:
+            return (correct/total)*100
+        else:
+            return 0.0
 
     # Task 4: Implement evaluate
     def evaluate(self, dataset):
@@ -128,27 +143,29 @@ class ClassifierBase:
         Returns:
             tuple: (correct, wrong, total, y_pred_list, accuracy)
         """
-        # correct = 0
-        # wrong = 0
-        # total = 0
-        # y_pred_list = []
+        correct = 0
+        wrong = 0
+        total = 0
+        y_pred_list = []
 
-        # print("\n=== Start Evaluation ===")
+        print("\n=== Start Evaluation ===")
 
-        # for sample in dataset:
-        #     y_pred = self.predict(<your code here>)
-        #     y_true = self.derive_true_label(<your code here>)
-        #     correct, wrong, total, y_pred_list = self.update_result_counts(
-        #         correct, wrong, total, y_pred_list, y_pred, y_true
-        #     )
-        #     print(
-        #         f"id={sample['id']} | true={y_true} | pred={y_pred} | "
-        #         f"petal_length={sample['petal_length']}"
-        #     )
+        for sample in dataset:
+             y_pred = self.predict(<your code here>)
+             y_true = self.derive_true_label(<your code here>)
+             correct, wrong, total, y_pred_list = self.update_result_counts(
+                 correct, wrong, total, y_pred_list, y_pred, y_true
+             )
+             print(
+                 f"id={sample['id']} | true={y_true} | pred={y_pred} | "
+                 f"petal_length={sample['petal_length']}"
+             )
 
-        # accuracy = self.calculate_accuracy(correct, total)
-        # return correct, wrong, total, y_pred_list, accuracy
-        pass
+             accuracy = self.calculate_accuracy(correct, total)
+             return correct, wrong, total, y_pred_list, accuracy
+
+
+
 
 
 class RuleClassifier(ClassifierBase):
@@ -171,7 +188,8 @@ class RuleClassifier(ClassifierBase):
         """
         # 1. Call super().__init__() to run the parent's setup
         # 2. Store the threshold: self.threshold = threshold
-        pass
+        super().__init__()
+        self.threshold = threshold
 
     # Task 6: Implement RuleClassifier.predict
     def predict(self, sample):
@@ -189,7 +207,10 @@ class RuleClassifier(ClassifierBase):
         # If sample["petal_length"] < self.threshold:
         #     return self.positive_label
         # Otherwise return self.negative_label
-        pass
+        if sample ["petal_length"] < self.threshold:
+            retunrn self.positive_label
+        else:
+            return self.negative_label
 
 
 class NearestCentroidClassifier(ClassifierBase):
