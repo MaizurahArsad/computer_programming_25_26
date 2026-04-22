@@ -18,5 +18,3 @@ exponent_value1 = 3
 
 result = calculate_power(base_value1, exponent_value1)
 print(result)
-
-
